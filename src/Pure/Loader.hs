@@ -40,7 +40,7 @@ instance (Eq key, Typeable key, Typeable view, Typeable response) => Pure (Loade
                         unless (Pure.Loader.lazy l) (load True)
                     , receive = \newprops oldstate -> do 
                         oldprops <- ask self
-                        when (reload newprops && key newprops /= key oldprops) (load False)
+                        when (reload newprops && not (reload oldprops) || key newprops /= key oldprops) (load False)
                         return (True,loading newprops) 
                     , Pure.render = \l (loaded,s) -> 
                         if not loaded && Pure.Loader.lazy l
