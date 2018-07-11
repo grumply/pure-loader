@@ -39,5 +39,5 @@ instance (Eq key, Typeable key, Typeable view, Typeable response) => Pure (Loade
                         oldprops <- ask self
                         when (reload newprops && not (reload oldprops) || key newprops /= key oldprops) (load False)
                         return (True,loading newprops) 
-                    , Pure.render = \l (loaded,s) -> loaded # Pure.Loader.render l s 
+                    , Pure.render = \l (loaded,s) -> if loaded then Pure.Loader.render l s else Null
                     }
