@@ -1,7 +1,7 @@
 {-# LANGUAGE RecordWildCards #-}
 module Pure.Loader where
 
-import Pure
+import Pure hiding (key)
 
 import Control.Monad
 import Data.Typeable
