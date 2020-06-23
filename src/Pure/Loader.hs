@@ -18,7 +18,7 @@ data Loader key view response = Loader
 
 instance (Eq key, Typeable key, Typeable view, Typeable response) => Pure (Loader key view response) where
     view =
-        ComponentIO $ \self ->
+        Component $ \self ->
             let
                 upd = modify_ self . const
 
